@@ -1,4 +1,4 @@
-﻿// ------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 // ------------------------------------------------------------------------------------------------
@@ -58,6 +58,7 @@ codeunit 693 "Payment Practice Math"
         Result := Average(AgreedPaymentTimes);
     end;
 
+    /// <summary>Calculates the average value from a list of integers.</summary>
     procedure Average(var List: List of [Integer]): Integer
     begin
         if List.Count() = 0 then
