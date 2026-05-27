@@ -10,7 +10,6 @@ page 689 "Payment Practice List"
 {
     ApplicationArea = All;
     Caption = 'Payment Practices';
-    // Test edit: list page for payment practice headers
     CardPageId = "Payment Practice Card";
     Editable = false;
     PageType = List;
@@ -41,6 +40,29 @@ page 689 "Payment Practice List"
                     ToolTip = 'Specifies the ending date of the payment practice report.';
                 }
 
+            }
+        }
+    }
+
+    actions
+    {
+        area(Navigation)
+        {
+            action(SetupOverview)
+            {
+                ApplicationArea = All;
+                Caption = 'Setup Overview';
+                Image = Setup;
+                ToolTip = 'Opens the setup overview with links to payment periods and payment practices.';
+                RunObject = page "Payment Practice Setup Overview";
+            }
+            action(OpenPaymentPeriods)
+            {
+                ApplicationArea = All;
+                Caption = 'Payment Periods';
+                Image = Calendar;
+                ToolTip = 'Opens payment periods that define day ranges for payment practice aggregation.';
+                RunObject = page "Payment Periods";
             }
         }
     }

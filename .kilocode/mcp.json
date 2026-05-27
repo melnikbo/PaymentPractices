@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "blackbox": {
+      "type": "streamable-http",
+      "url": "http://localhost:3000/mcp/",
+      "headers": {
+        "X-API-Key": "bb_ee24fb2af2252f0021f3c22584b954ad7732f6eeb3dd162ca2c9c8f118956649"
+      }
+    }
+  }
+}

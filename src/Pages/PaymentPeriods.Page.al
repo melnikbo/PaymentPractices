@@ -42,6 +42,30 @@ page 685 "Payment Periods"
 
     actions
     {
+        area(Processing)
+        {
+            action(RestoreDefaultPeriods)
+            {
+                ApplicationArea = All;
+                Caption = 'Restore Default Periods';
+                Image = Refresh;
+                ToolTip = 'Recreates the default payment period buckets when no periods exist yet.';
+                trigger OnAction()
+                var
+                    PaymentPeriod: Record "Payment Period";
+                begin
+                    if not PaymentPeriod.IsEmpty() then
+                        if not Confirm(RestoreDefaultPeriodsQst) then
+                            exit;
+
+                    PaymentPeriod.DeleteAll();
+                    PaymentPeriod.SetupDefaults();
+                end;
+            }
+        }
     }
+
+    var
+        RestoreDefaultPeriodsQst: Label 'Existing payment periods will be deleted and replaced with defaults. Continue?';
 }
 
