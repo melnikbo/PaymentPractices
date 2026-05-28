@@ -41,6 +41,11 @@ table 685 "Payment Period"
         {
 
         }
+        field(5; "Exclude from Report"; Boolean)
+        {
+            Caption = 'Exclude from Report';
+            ToolTip = 'Specifies whether payments in this period bucket are omitted from printed payment practice reports.';
+        }
     }
 
     keys

@@ -36,6 +36,10 @@ page 685 "Payment Periods"
                 {
                     ToolTip = 'Specifies the description of the payment period.';
                 }
+                field("Exclude from Report"; Rec."Exclude from Report")
+                {
+                    ToolTip = 'Specifies whether payments in this period bucket are omitted from printed payment practice reports.';
+                }
             }
         }
     }

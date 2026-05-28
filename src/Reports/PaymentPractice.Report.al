@@ -7,6 +7,7 @@ namespace Microsoft.Finance.Analysis;
 report 685 "Payment Practice"
 {
     ApplicationArea = All;
+    Caption = 'Payment Practice Report';
     DefaultRenderingLayout = PaymentPractice_PeriodLayout;
 
     dataset

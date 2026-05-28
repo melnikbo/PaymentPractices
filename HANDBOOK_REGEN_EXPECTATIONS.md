@@ -34,7 +34,7 @@ rg -n "Days From" OUT_DOC.md
 
 ---
 
-## Iteration 2 (app `29.0.0.2`) -- current
+## Iteration 2 (app `29.0.0.2`)
 
 ### Code changes
 
@@ -81,6 +81,63 @@ rg -n "Header Type" OUT_DOC.md | head
 | Setup Overview + Restore Default Periods | 1+ |
 | Troubleshooting + View Source Entries + Paym. Prac. Troubleshoot | 2 |
 | `29.0.0.2` in job metadata / change log | 2 |
+
+---
+
+## Iteration 3 (app `29.0.0.3`) -- current
+
+### Code changes
+
+| Change | AL object |
+| --- | --- |
+| New table field | `Payment Period`.`Exclude from Report` |
+| Line overview page | Page 692 `Payment Practice Line Overview` |
+| Admin permission set | `Paym. Prac. Admin` (includes Edit) |
+| Report caption | Report `Payment Practice` caption **`Payment Practice Report`** |
+| List processing action | **`New Payment Practice`** on `Payment Practice List` |
+| List navigation | **`Line Overview`** on list and troubleshooting |
+| Card action | **`Clear Generated Lines`** on `Payment Practice Card` |
+| Lines subpage action | **`View Line Source Data`** on `Payment Practice Lines` |
+
+### Expected in OUT_DOC.md (must appear for iteration 3)
+
+1. **Stammdaten / Einrichtung** -> `Payment Periods`: field **`Exclude from Report`** (report exclusion flag).
+2. **Taegliche Arbeit**: page **`Payment Practice Line Overview`** for cross-header line comparison.
+3. **Liste**: action **`New Payment Practice`** to create a header.
+4. **Karte**: action **`Clear Generated Lines`** (removes generated data, keeps header).
+5. **Zeilen**: action **`View Line Source Data`** on line subpage.
+6. **Report**: name/caption **`Payment Practice Report`** (may still reference object name `Payment Practice`).
+7. **Berechtigungen**: permission set **`Paym. Prac. Admin`**.
+
+### Expected in OUT_REPORT.md
+
+1. **`Change log (ingest)`** for field 5 on `Payment Period`, page 692, permission set 689, report caption, and new actions.
+2. Object inventory: **`[x] Page Payment Practice Line Overview`**, table field documented.
+
+### Must still hold from iterations 1-2
+
+8. Iteration 1-2 signals (Setup Overview, Troubleshooting, View Source Entries, etc.) unless intentionally superseded.
+
+### Verify iteration 3 only
+
+```bash
+rg -n "Exclude from Report" OUT_DOC.md
+rg -n "Payment Practice Line Overview" OUT_DOC.md
+rg -n "New Payment Practice" OUT_DOC.md
+rg -n "Clear Generated Lines" OUT_DOC.md
+rg -n "View Line Source Data" OUT_DOC.md
+rg -n "Payment Practice Report" OUT_DOC.md
+rg -n "Paym\\. Prac\\. Admin" OUT_DOC.md
+```
+
+### Distinguish iterations after regen
+
+| Signal in OUT_DOC | Iteration |
+| --- | --- |
+| Setup Overview + Restore Default Periods | 1+ |
+| Troubleshooting + View Source Entries + Paym. Prac. Troubleshoot | 2 |
+| Exclude from Report + Line Overview + Clear Generated Lines + Paym. Prac. Admin | 3 |
+| `29.0.0.3` in job metadata / change log | 3 |
 
 ---
 

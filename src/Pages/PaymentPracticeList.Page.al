@@ -54,6 +54,18 @@ page 689 "Payment Practice List"
 
     actions
     {
+        area(Processing)
+        {
+            action(NewPaymentPractice)
+            {
+                ApplicationArea = All;
+                Caption = 'New Payment Practice';
+                Image = New;
+                ToolTip = 'Creates a new payment practice header for generation.';
+                RunObject = page "Payment Practice Card";
+                RunPageMode = Create;
+            }
+        }
         area(Navigation)
         {
             action(SetupOverview)
@@ -79,6 +91,14 @@ page 689 "Payment Practice List"
                 Image = Help;
                 ToolTip = 'Opens troubleshooting guidance and shortcuts for payment practices.';
                 RunObject = page "Payment Practice Troubleshooting";
+            }
+            action(LineOverview)
+            {
+                ApplicationArea = All;
+                Caption = 'Line Overview';
+                Image = Line;
+                ToolTip = 'Opens all payment practice lines across headers for comparison.';
+                RunObject = page "Payment Practice Line Overview";
             }
         }
     }

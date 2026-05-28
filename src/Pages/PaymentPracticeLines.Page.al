@@ -97,6 +97,25 @@ page 688 "Payment Practice Lines"
         }
     }
 
+    actions
+    {
+        area(Processing)
+        {
+            action(ViewLineSourceData)
+            {
+                ApplicationArea = All;
+                Caption = 'View Line Source Data';
+                Image = EntriesList;
+                ToolTip = 'Opens source entries that contributed to the selected payment practice line.';
+
+                trigger OnAction()
+                begin
+                    ShowLineDataLines();
+                end;
+            }
+        }
+    }
+
     procedure UpdateVisibility(newAggregationType: enum "Paym. Prac. Aggregation Type"; newHeaderType: enum "Paym. Prac. Header Type")
     begin
         AggregationType := newAggregationType;

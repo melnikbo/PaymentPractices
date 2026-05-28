@@ -54,6 +54,14 @@ page 691 "Payment Practice Troubleshooting"
                 ToolTip = 'Opens the list of generated payment practices.';
                 RunObject = page "Payment Practice List";
             }
+            action(OpenLineOverview)
+            {
+                ApplicationArea = All;
+                Caption = 'Line Overview';
+                Image = Line;
+                ToolTip = 'Opens all payment practice lines across headers for comparison.';
+                RunObject = page "Payment Practice Line Overview";
+            }
         }
     }
 }

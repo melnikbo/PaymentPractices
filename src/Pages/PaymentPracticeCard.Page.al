@@ -155,6 +155,27 @@ page 687 "Payment Practice Card"
                     ShowHeaderDataLines();
                 end;
             }
+            action(ClearGeneratedLines)
+            {
+                Caption = 'Clear Generated Lines';
+                ToolTip = 'Deletes generated lines and source data for this payment practice without deleting the header.';
+                Image = Delete;
+
+                trigger OnAction()
+                var
+                    ConfirmManagement: Codeunit "Confirm Management";
+                begin
+                    if not Rec."Lines Exist" then
+                        exit;
+
+                    if not ConfirmManagement.GetResponse(ClearGeneratedLinesQst, false) then
+                        exit;
+
+                    Rec.ClearHeader();
+                    UpdateVisibility();
+                    CurrPage.Update();
+                end;
+            }
         }
         area(Promoted)
         {
@@ -179,6 +200,7 @@ page 687 "Payment Practice Card"
     var
         FeatureTelemetry: Codeunit "Feature Telemetry";
         LinesWillBeDeletedQst: Label 'All previously generated lines will be deleted. Do you want to continue?';
+        ClearGeneratedLinesQst: Label 'Generated lines and source data will be removed. Do you want to continue?';
         NoEntriesFoundMsg: Label 'The payment practice generator found no entries corresponding to the header type, starting and ending date.';
 
     local procedure PrepareLayout(PaymentPracticeLinesAggregator: Interface PaymentPracticeLinesAggregator)
