@@ -2,56 +2,90 @@
 
 Baseline handbook: kilo job `75c2e4bb-f94b-46fb-a15b-2b86299c3998` / `OUT_DOC.md` (2026-05-27).
 
-After code ingest + handbook review (`Handbook job source: ingest`), expect **minimum** updates below.
+After code ingest + handbook review (`Handbook job source: ingest`), expect updates for the **latest pushed iteration** below.
 If BlackBox can read AL source, also expect corrections marked **(MCP-dependent)**.
 
-## Code changes in this commit
+---
+
+## Iteration 1 (app `29.0.0.1`)
+
+### Code changes
 
 | Change | AL object |
 | --- | --- |
 | New setup hub page | Page 690 `Payment Practice Setup Overview` |
 | List navigation actions | Page 689 `Payment Practice List` -> Setup Overview, Payment Periods |
 | Restore defaults action | Page 685 `Payment Periods` -> `Restore Default Periods` |
-| App version | `app.json` -> `29.0.0.1` |
 
-## Expected in OUT_DOC.md (German)
+### Expected in OUT_DOC.md
 
-### Must appear (new user-facing surface)
+1. **`Payment Practice Setup Overview`** in Einrichtung or Schnellstart.
+2. List actions **`Setup Overview`** / **`Payment Periods`**.
+3. Action **`Restore Default Periods`** on **`Payment Periods`**.
+4. **(MCP-dependent)** Real period fields: **`Code`**, **`Days From`**, **`Days To`**, **`Description`** (not `Type`/`No.`/`Name`/dates).
 
-1. **Einrichtung** (or **Schnellstart**): mention page **`Payment Practice Setup Overview`** as optional entry before `Payment Periods`.
-2. **Taegliche Arbeit** / list section: mention actions **`Setup Overview`** and/or navigation to **`Payment Periods`** from **`Payment Practice List`**.
-3. **Einrichtung** -> **Zahlungszeitraeume**: document action **`Restore Default Periods`** on page **`Payment Periods`** (warn that existing periods are replaced).
-
-### Must NOT remain (baseline errors)
-
-4. **(MCP-dependent)** Setup table for `Payment Periods` must **not** list fictitious fields `Type`, `No.`, `Name`, `Starting Date`, `Ending Date` as period master fields.
-5. **(MCP-dependent)** Same section should document real fields: **`Code`**, **`Days From`**, **`Days To`**, **`Description`**.
-
-### Should stay unchanged (ingest-scoped review)
-
-6. Permission set names `Paym. Prac. Read`, `Paym. Prac. Edit`, `Paym. Prac. Objects` still documented.
-7. Existing usage scenarios (Debitor month, Kreditor quarter, Restbetraege) unless explicitly rewritten for new setup page.
-
-## Expected in OUT_REPORT.md (English)
-
-1. **`Handbook job source: ingest`** (when triggered by push ingest).
-2. Section **`Change log (ingest)`** with bullets for page 690, list actions, and restore action.
-3. Object inventory checklist: **`[x] Page Payment Practice Setup Overview present`**.
-
-## Quick verification commands (after new OUT_DOC.md is available)
+### Verify
 
 ```bash
-# Must match
 rg -n "Payment Practice Setup Overview" OUT_DOC.md
 rg -n "Restore Default Periods" OUT_DOC.md
-
-# Should match after MCP indexes AL (may fail on graph-only runs)
 rg -n "Days From" OUT_DOC.md
-rg -n 'Type.*No\..*Name' OUT_DOC.md && echo "FAIL: old fictitious period fields still documented"
 ```
+
+---
+
+## Iteration 2 (app `29.0.0.2`) -- current
+
+### Code changes
+
+| Change | AL object |
+| --- | --- |
+| Troubleshooting hub page | Page 691 `Payment Practice Troubleshooting` |
+| New permission set | `Paym. Prac. Troubleshoot` (read-only diagnostics role) |
+| Card action (promoted) | Page 687 `Payment Practice Card` -> **`View Source Entries`** |
+| Data list caption | Page 686 caption **`Payment Practice Source Data`** (object name unchanged) |
+| List columns | Page 689 shows **`Header Type`**, **`Aggregation Type`** |
+| List / setup navigation | Actions **`Troubleshooting`** on list and setup overview |
+
+### Expected in OUT_DOC.md (must appear for iteration 2)
+
+1. **FAQ / Troubleshooting** (or Einrichtung): page **`Payment Practice Troubleshooting`** and when to use it.
+2. **Taegliche Arbeit** -> card: promoted action **`View Source Entries`** opens source data (caption **`Payment Practice Source Data`** or object `Payment Practice Data List`).
+3. **Liste**: columns **`Header Type`** and **`Aggregation Type`** documented.
+4. **Berechtigungen**: fourth permission set **`Paym. Prac. Troubleshoot`** (read-focused diagnostics).
+5. Navigation **`Troubleshooting`** from **`Payment Practice List`** or **`Payment Practice Setup Overview`**.
+
+### Expected in OUT_REPORT.md
+
+1. **`Change log (ingest)`** bullets for page 691, permission set 688, card action, list columns, data list caption.
+2. Object inventory: **`[x] Page Payment Practice Troubleshooting`**, **`[x] Permission set Paym. Prac. Troubleshoot`**.
+
+### Must still hold from iteration 1 (unless baseline was updated)
+
+6. **`Payment Practice Setup Overview`**, **`Restore Default Periods`** still documented.
+
+### Verify iteration 2 only
+
+```bash
+rg -n "Payment Practice Troubleshooting" OUT_DOC.md
+rg -n "View Source Entries" OUT_DOC.md
+rg -n "Payment Practice Source Data" OUT_DOC.md
+rg -n "Paym\\. Prac\\. Troubleshoot" OUT_DOC.md
+rg -n "Header Type" OUT_DOC.md | head
+```
+
+### Distinguish iterations after regen
+
+| Signal in OUT_DOC | Iteration |
+| --- | --- |
+| Setup Overview + Restore Default Periods | 1+ |
+| Troubleshooting + View Source Entries + Paym. Prac. Troubleshoot | 2 |
+| `29.0.0.2` in job metadata / change log | 2 |
+
+---
 
 ## If regeneration does not run
 
-- Confirm ingest completed for repo `repo:melnikbo:paymentpractices:64977288-facd-4b48-aaaa-bb0e288edfb3`.
-- Confirm handbook job source is **`ingest`**, not manual-only with unchanged AL.
-- Compare `prefetch/active_handbook.md` in the new job bundle to this baseline `OUT_DOC.md`.
+- Confirm ingest for `repo:melnikbo:paymentpractices:64977288-facd-4b48-aaaa-bb0e288edfb3`.
+- Confirm handbook job source is **`ingest`**.
+- Compare `prefetch/active_handbook.md` in the new job bundle to the previous `OUT_DOC.md`.

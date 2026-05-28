@@ -39,6 +39,14 @@ page 689 "Payment Practice List"
                 {
                     ToolTip = 'Specifies the ending date of the payment practice report.';
                 }
+                field("Header Type"; Rec."Header Type")
+                {
+                    ToolTip = 'Specifies the source for entries in the payment practice.';
+                }
+                field("Aggregation Type"; Rec."Aggregation Type")
+                {
+                    ToolTip = 'Specifies the aggregation type of the payment practice.';
+                }
 
             }
         }
@@ -63,6 +71,14 @@ page 689 "Payment Practice List"
                 Image = Calendar;
                 ToolTip = 'Opens payment periods that define day ranges for payment practice aggregation.';
                 RunObject = page "Payment Periods";
+            }
+            action(Troubleshooting)
+            {
+                ApplicationArea = All;
+                Caption = 'Troubleshooting';
+                Image = Help;
+                ToolTip = 'Opens troubleshooting guidance and shortcuts for payment practices.';
+                RunObject = page "Payment Practice Troubleshooting";
             }
         }
     }

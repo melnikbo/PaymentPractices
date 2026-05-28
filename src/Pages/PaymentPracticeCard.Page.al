@@ -144,6 +144,17 @@ page 687 "Payment Practice Card"
                     FeatureTelemetry.LogUptake('0000KSV', 'Payment Practices', "Feature Uptake Status"::Used);
                 end;
             }
+            action(ViewSourceEntries)
+            {
+                Caption = 'View Source Entries';
+                ToolTip = 'Opens the source ledger entries that were used to calculate this payment practice.';
+                Image = EntriesList;
+
+                trigger OnAction()
+                begin
+                    ShowHeaderDataLines();
+                end;
+            }
         }
         area(Promoted)
         {
@@ -151,6 +162,9 @@ page 687 "Payment Practice Card"
             {
             }
             actionref(Print_Promoted; Print)
+            {
+            }
+            actionref(ViewSourceEntries_Promoted; ViewSourceEntries)
             {
             }
         }

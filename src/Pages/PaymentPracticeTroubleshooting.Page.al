@@ -4,10 +4,10 @@
 // ------------------------------------------------------------------------------------------------
 namespace Microsoft.Finance.Analysis;
 
-page 690 "Payment Practice Setup Overview"
+page 691 "Payment Practice Troubleshooting"
 {
     ApplicationArea = All;
-    Caption = 'Payment Practice Setup Overview';
+    Caption = 'Payment Practice Troubleshooting';
     DeleteAllowed = false;
     InsertAllowed = false;
     ModifyAllowed = false;
@@ -18,10 +18,10 @@ page 690 "Payment Practice Setup Overview"
     {
         area(Content)
         {
-            group(Setup)
+            group(Checks)
             {
-                Caption = 'Setup steps';
-                InstructionalText = 'Define payment day ranges on Payment Periods, then generate and review payment practices from the list.';
+                Caption = 'Checks';
+                InstructionalText = 'Verify payment periods exist, open the payment practice card, use View Source Entries to inspect underlying data, and regenerate if header type or dates changed.';
             }
         }
     }
@@ -30,12 +30,20 @@ page 690 "Payment Practice Setup Overview"
     {
         area(Processing)
         {
+            action(OpenSetupOverview)
+            {
+                ApplicationArea = All;
+                Caption = 'Setup Overview';
+                Image = Setup;
+                ToolTip = 'Opens the payment practice setup overview.';
+                RunObject = page "Payment Practice Setup Overview";
+            }
             action(OpenPaymentPeriods)
             {
                 ApplicationArea = All;
                 Caption = 'Payment Periods';
                 Image = Calendar;
-                ToolTip = 'Opens payment periods that bucket actual payment days for aggregation.';
+                ToolTip = 'Opens payment periods used to bucket actual payment days.';
                 RunObject = page "Payment Periods";
             }
             action(OpenPaymentPracticeList)
@@ -43,16 +51,8 @@ page 690 "Payment Practice Setup Overview"
                 ApplicationArea = All;
                 Caption = 'Payment Practices';
                 Image = List;
-                ToolTip = 'Opens generated payment practices for review and drill-down.';
+                ToolTip = 'Opens the list of generated payment practices.';
                 RunObject = page "Payment Practice List";
-            }
-            action(OpenTroubleshooting)
-            {
-                ApplicationArea = All;
-                Caption = 'Troubleshooting';
-                Image = Help;
-                ToolTip = 'Opens troubleshooting steps when payment practices show unexpected values.';
-                RunObject = page "Payment Practice Troubleshooting";
             }
         }
     }

@@ -21,6 +21,7 @@ permissionset 685 "Paym. Prac. Objects"
         page "Payment Practice Lines" = X,
         page "Payment Practice List" = X,
         page "Payment Practice Setup Overview" = X,
+        page "Payment Practice Troubleshooting" = X,
         codeunit "Paym. Prac. Cust. Generator" = X,
         codeunit "Paym. Prac. CV Generator" = X,
         codeunit "Paym. Prac. Period Aggregator" = X,

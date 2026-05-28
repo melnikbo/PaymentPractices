@@ -7,6 +7,7 @@ namespace Microsoft.Finance.Analysis;
 page 686 "Payment Practice Data List"
 {
     ApplicationArea = All;
+    Caption = 'Payment Practice Source Data';
     PageType = List;
     SourceTable = "Payment Practice Data";
 
