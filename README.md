@@ -12,3 +12,4 @@ This app enables the calculation of payment times aggregated across various metr
 - `src/Pages/` - UI pages
 - `src/Reports/` - Reports
 - `src/Core/` - Business logic, codeunits, permissions
+test
